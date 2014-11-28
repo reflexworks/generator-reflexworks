@@ -5,7 +5,7 @@
 
             var init = function() {
 
-                $scope.masseage = 'Hellow <%= serviceName %>';
+                $scope.masseage = 'Hello <%= serviceName %>';
 
             };
             init();
