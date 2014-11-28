@@ -22,7 +22,7 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       message: 'Service Name?'
     },{
       name: 'serviceHostUrl',
-      message: 'Service Host Url?'
+      message: 'Domain Name?'
     },{
       name: 'apiKey',
       message: 'Api Key?'
