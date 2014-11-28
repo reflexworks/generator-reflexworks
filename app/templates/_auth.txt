@@ -1,0 +1,4 @@
+<%= serviceName %>
+<%= apiKey %>
+<%= account %>
+<%= password %>

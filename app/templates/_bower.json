@@ -1,0 +1,26 @@
+{
+  "name": "<%= serviceName %>",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.6",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "angular-resource": "1.2.6",
+    "angular-cookies": "1.2.6",
+    "angular-sanitize": "1.2.6",
+    "angular-route": "1.2.6",
+    "jsSHA": "~1.5.0",
+    "opensoft-wsse": "~0.1.0",
+    "requirejs": "~2.1.14",
+    "zlib-asm": "~0.2.2",
+    "jquery": "1",
+    "jquery-ui": "~1.11.0",
+    "bootstrap": "~3.1.1",
+    "angular-bootstrap": "~0.11.0",
+    "msgpack-javascript": "~1.05"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.6",
+    "angular-scenario": "1.2.6"
+  }
+}

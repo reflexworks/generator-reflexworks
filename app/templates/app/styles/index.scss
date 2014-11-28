@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+//Core variables and mixins
+@import "index/mixins";
+@import "index/utilities";
+@import "index/variables";
+
+//SMACSS 'Base'
+@import "index/base";
+
+//SMACSS 'Layouts'
+@import "index/layouts/l-main";
+
+//SMACSS 'Modules'
+@import "index/modules/m-main";
+
+//SMACSS 'States'
+
