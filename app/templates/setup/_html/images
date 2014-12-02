@@ -1,0 +1,12 @@
+<feed>
+<entry>
+<contributor>
+<uri>urn:vte.cx:acl:1,CRUD</uri>
+</contributor>
+<contributor>
+<uri>urn:vte.cx:acl:*,R./</uri>
+</contributor>
+<id>/_html/images,1</id>
+<link rel="self" href="/_html/images" />
+</entry>
+</feed>

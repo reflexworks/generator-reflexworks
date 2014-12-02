@@ -1,0 +1,27 @@
+<feed>
+  <entry>
+    <id>/@<%= serviceName %>/_settings/template,1</id>
+    <link href="/@<%= serviceName %>/_settings/template" rel="self"/>
+    <contributor>
+      <uri>urn:vte.cx:acl:#,CRUD</uri>
+    </contributor>
+    <contributor>
+      <uri>urn:vte.cx:acl:+,R</uri>
+    </contributor>
+<content><%= serviceName %>{}
+userinfo
+ id(int)
+ email
+favorite
+ food!=^.{3}$
+ music[]=^.{5}$
+hobby{}
+ type
+ name
+ updated(date)
+ </content>
+<rights>
+userinfo.id:/person
+</rights>
+</entry>
+</feed>
