@@ -1,0 +1,91 @@
+<div class="l-main__wapper">
+	<div class="jumbotron">
+		<h1>XLS Create Demo</h1>
+		<p>XLS作成デモ</p>
+	</div>
+	<div class="col-md-offset-1 col-md-10">
+
+		<p>XLSの作成はデータベースに登録されているデータを対象に行います。</p>
+		<p>また、事前に<a href="#/serverSideJavascript">サーバーサイドJavascript</a>でXLS出力機能を呼び出す<b>サービス</b>を作成する必要があります。</p>
+		<p>そこにリクエストを投げることで任意のデータをXLSとして出力します。</p>
+
+		<h3 class="page-header">■ 出力サンプル</h3>
+
+
+
+
+		<!---------- ここからサンプル -------------------------------------------------------------->
+		<div class="jumbotron">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">ReqestURL</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="url" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 help-block">copy: <code>/s/person?_templatexls=/xls/preson_template.xls</code></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button class="btn btn-success" ng-click="doXls()">Send</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!---------- ここまでサンプル -------------------------------------------------------------->
+
+
+
+
+		<h3 class="page-header">■ リクエストURL</h3>
+		<p>リクエストURLは以下のような構造になっています。</p>
+		<pre>/s/{サービスURL}?_templatexls={XLSのテンプレートURL}</pre>
+
+
+		<h3 class="page-header">■ XLSのテンプレート</h3>
+		<p>XLSはテンプレートHTMLを作成し、それをもとに出力します。</p>
+		<p>サンプルのテンプレートは<code>/app/xls/preson_template.xls</code>にありますので参考にしてみてください。</p>
+
+
+		<h3 class="page-header">■ 入力サンプル</h3>
+		<p>テンプレートに則ったXLSをインポートすることで、データを抜き出しJSON形式で返却します。</p>
+
+
+
+
+		<!---------- ここからサンプル -------------------------------------------------------------->
+		<div class="jumbotron">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Import File</label>
+					<div class="col-sm-10">
+						<input type="file" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 help-block">select Local File: <code>/example_data/parson_data.xls</code></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button class="btn btn-success" ng-click="doXls()">Send</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Responce</label>
+					<pre class="col-sm-10">
+					</pre>
+				</div>
+			</form>
+		</div>
+		<!---------- ここまでサンプル -------------------------------------------------------------->
+
+
+
+
+		<br />
+		<br />　
+
+
+	</div>
+</div>

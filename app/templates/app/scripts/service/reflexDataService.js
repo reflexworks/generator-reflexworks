@@ -1,8 +1,9 @@
 (function () {
     'use strict';
     angular.module('<%= serviceName %>App')
-        .service('reflexDataService', function($http, $q, $log, $filter, $window, DateFormat) {
+        .service('reflexDataService', function($http, $q, $log, $filter, $window) {
 
+        	var dateFormat = 'yyyy/MM/dd';
             $http.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
             $http.defaults.headers.common['Content-Type']     = 'text/json';
 
@@ -133,7 +134,7 @@
                 var doCast = function(entry){
                     angular.forEach(entry, function(value, key) {
                         if (value instanceof Date) {
-                            entry[key] = $filter('date')(value, DateFormat);
+                            entry[key] = $filter('date')(value, dateFormat);
                         } else if (angular.equals(value, null)) {
                         	delete entry[key];
                         } else  if (angular.equals(typeof value, 'object')){

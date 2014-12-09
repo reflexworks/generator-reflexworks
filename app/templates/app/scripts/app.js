@@ -9,15 +9,23 @@ angular.module('<%= serviceName %>App', [
     .config(function ($provide, $routeProvider, $httpProvider) {
 
         var routePath  = {
-            'TOP' : '/',
-        };
-        $provide.constant('RoutePath', routePath);
+                'TOP' : '/',
+                'REFLEX_DATA_SERVICE_DEMO' : '/reflexDataServiceDemo',
+                'PDF_CREATE_DEMO': '/PDFCreateDemo',
+                'XLS_CREATE_DEMO': '/XLSCreateDemo',
+                'SERVER_SIDE_JAVASCRIPT_DEMO': '/serverSideJavascript'
+            };
+            $provide.constant('RoutePath', routePath);
 
-        $routeProvider
-            .when(routePath.TOP,                     { templateUrl: 'views/MainView.html',              controller: 'MainCtrl' })
-            .otherwise({
-                redirectTo: routePath.TOP
-            });
+            $routeProvider
+                .when(routePath.TOP, { templateUrl: 'views/MainView.html', controller: 'MainCtrl' })
+                .when(routePath.REFLEX_DATA_SERVICE_DEMO, { templateUrl: 'views/ReflexDataServiceDemo.html', controller: 'ReflexDataServiceDemoCtrl' })
+                .when(routePath.PDF_CREATE_DEMO, { templateUrl: 'views/PDFCreateDemo.html', controller: 'PDFCreateDemoCtrl' })
+                .when(routePath.XLS_CREATE_DEMO, { templateUrl: 'views/XLSCreateDemo.html', controller: 'XLSCreateDemoCtrl' })
+                .when(routePath.SERVER_SIDE_JAVASCRIPT_DEMO, { templateUrl: 'views/ServerSideJavascriptDemo.html', controller: 'ServerSideJavascriptDemoCtrl' })
+                .otherwise({
+                    redirectTo: routePath.TOP
+                });
 
 });
 

@@ -67,9 +67,46 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="l-main-content-wrapper">
+<div class="l-main__wapper">
+	<div class="jumbotron">
+		<h1>Authentication Demo</h1>
+		<p>認証デモ</p>
+	</div>
+	<div class="col-md-offset-1 col-md-10">
 
-	<div class="l-login__wapper">
+		<p>
+			ログインページ(login.html)はアプリケーションページ（index.html）へアクセスする窓口として作成する必要があります。
+		</p>
+		<p>
+			開発中もセッションの期限が切れたらログインページからログインを行い、開発を進めていきます。
+		</p>
+		<p>
+			また、ログインページはindex.htmlと同じ階層に作成し、名前を「login.html」とする必要があります。
+		</p>
+		<p>
+			このデモページもその様に作成されていますので参考にしてみてください。
+		</p>
+		<br />
+		<p>
+			このアプリケショーン(<%= serviceName %>)の管理者アカウントは以下になります。
+		</p>
+		<dl class="dl-horizontal">
+		  <dt>Account：</dt>
+		  <dd><code><%= account %></code></dd>
+		  <dt>Password：</dt>
+		  <dd><code><%= password %></code></dd>
+		</dl>
+		<p>
+			管理者アカウントは、基本的に<%= serviceHostUrl %>の全てのデータベースにアクセスできます。
+		</p>
+
+		<h3 class="page-header">■ サンプル </h3>
+		<p>実際のアカウントで認証を行います。管理者アカウントを使用すると便利です。</p>
+		<p>成功するとHTTP Statusが<code>200</code>で返却されます。失敗すると<code>401</code>もしくは<code>403</code>で返却されます。</p>
+
+
+
+		<!---------- ここからサンプル -------------------------------------------------------------->
 		<div class="jumbotron">
 			<form class="form-horizontal">
 				<div class="form-group">
@@ -86,14 +123,61 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-default login" ng-click="login()">Sign In</button>
+						<button class="btn btn-success login" ng-click="login()">Sign In</button>
 						<span class="text-danger" ng-show="errorMesseage"> {{errorMesseage.messeage}} <span ng-show="errorStatus">({{errorStatus}})</span></span>
 					</div>
 				</div>
 			</form>
 		</div>
-	</div>
+		<!---------- ここまでサンプル -------------------------------------------------------------->
 
+
+
+		<p>管理アカウントでの認証後は以下のデータにアクセスできるようになっているので確認してみてください。</p>
+		<div class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Data View</label>
+				<div class="col-sm-5 input-group">
+					<label class="control-label"><a href="/d/master/food?f&x" target="_blank">/d/master/food?f&x</a></label>
+				</div>
+			</div>
+		</div>
+		<p>ブラウザのcookieを削除すると、認証のセッション情報が消去され、上記URLにアクセスできなくなります。</p>
+		<p>認証処理の動作確認を行いたい場合は活用してください。</p>
+
+		<h3 class="page-header">■ パスワード </h3>
+		<p>パスワードは入力されたものを暗号化しセットします。</p>
+		<p>暗号化のコードは以下です。</p>
+<pre>
+  var getPass = function(password){
+    var shaObj = new jsSHA(password, "ASCII");
+    return shaObj.getHash("SHA-256", "B64");
+  };
+</pre>
+
+		<h3 class="page-header">■ 認証トークンの作成 </h3>
+		<p>認証トークンは以下のように作成します。</p>
+		<br />
+		<p>controllerで<code>createTokenService</code>を呼び出します。</p>
+<pre>
+  angular.module('<%= serviceName %>App').controller('LoginCtrl', function ($scope, $log, $timeout,
+      reflexDataService, createTokenService) {
+</pre>
+		<br />
+		<p>ソースに以下を記述し作成します。</p>
+<pre>
+  var auth = createTokenService.getRxidToApikey({ユーザ名}, {暗号化したパスワード}, {APIキー}, {サービス名});
+</pre>
+		<br />
+		<p>認証トークンは以下のように使用します。</p>
+<pre>
+　　reflexDataService.get('/d?_RXID=' + auth).then(res){...
+</pre>
+
+		<br />
+		<br />　
+
+	</div>
 </div>
 
 </body>

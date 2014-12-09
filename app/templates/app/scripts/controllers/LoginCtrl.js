@@ -26,7 +26,7 @@
                 		pass = getPass(pass);
                 		var auth = createTokenService.getRxidToApikey(user, pass, '<%= apiKey %>', '<%= serviceName %>');
                 		reflexDataService.get('/d?_uid&_RXID=' + auth).then(function(res){
-                			location.href = '/';
+                			alert('認証成功');
                 		},function(res){
                 			$scope.errorMesseage = $scope.loginError;
                 			$scope.errorStatus = res.status;

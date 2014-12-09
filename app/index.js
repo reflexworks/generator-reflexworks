@@ -90,6 +90,10 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       this.template('app/scripts/app.js', 'app/scripts/app.js');
       this.template('app/scripts/controllers/MainCtrl.js', 'app/scripts/controllers/MainCtrl.js');
       this.template('app/scripts/controllers/LoginCtrl.js', 'app/scripts/controllers/LoginCtrl.js');
+      this.template('app/scripts/controllers/PDFCreateDemoCtrl.js', 'app/scripts/controllers/PDFCreateDemoCtrl.js');
+      this.template('app/scripts/controllers/ReflexDataServiceDemoCtrl.js', 'app/scripts/controllers/ReflexDataServiceDemoCtrl.js');
+      this.template('app/scripts/controllers/XLSCreateDemoCtrl.js', 'app/scripts/controllers/XLSCreateDemoCtrl.js');
+      this.template('app/scripts/controllers/ServerSideJavascriptDemoCtrl.js', 'app/scripts/controllers/ServerSideJavascriptDemoCtrl.js');
       this.template('app/scripts/service/createTokenService.js', 'app/scripts/service/createTokenService.js');
       this.template('app/scripts/service/feedToArrayService.js', 'app/scripts/service/feedToArrayService.js');
       this.template('app/scripts/service/reflexDataService.js', 'app/scripts/service/reflexDataService.js');
@@ -104,6 +108,11 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       this.template('app/styles/index/modules/_m-main.scss', 'app/styles/index/modules/_m-main.scss');
 
       this.template('app/views/MainView.html', 'app/views/MainView.html');
+      this.template('app/views/PDFCreateDemo.html', 'app/views/PDFCreateDemo.html');
+      this.template('app/views/reflexDataServiceDemo.html', 'app/views/reflexDataServiceDemo.html');
+      this.template('app/views/XLSCreateDemo.html', 'app/views/XLSCreateDemo.html');
+      this.template('app/views/ServerSideJavascriptDemo.html', 'app/views/ServerSideJavascriptDemo.html');
+
       this.src.copy('app/xls/preson_template.xls', 'app/xls/preson_template.xls');
       this.src.copy('app/pdf/template_person.html', 'app/pdf/template_person.html');
       this.src.copy('app/remote/person.js', 'app/remote/person.js');

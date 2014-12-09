@@ -1,3 +1,66 @@
 <div class="l-main__wapper">
-	<h3 class="m-main__title">{{masseage}}</h3>
+	<div class="jumbotron">
+		<h1>{{masseage}}</h1>
+		<p>welcam to Reflexworks API</p>
+		<p>HP : <a href="http://<%= serviceHostUrl %>" target="_blank">http://<%= serviceHostUrl %></a></p>
+	</div>
+</div>
+<div class="row col-xs-12">
+	<div class="col-xs-4">
+		<div class="well">
+			<h3>Authentication Demo</h3>
+			<p>
+				<%= serviceHostUrl %>への認証を行い、データアクセスをできるようにします。
+				reflexworksで開発するためには、開発者側もまず必ずログイン認証を行う必要があります。
+			</p>
+			<a href="login.html" class="btn btn-primary">サンプル</a>
+		</div>
+	</div>
+	<div class="col-xs-4">
+		<div class="well">
+			<h3>ReflexDataService Demo</h3>
+			<p>
+				Ajax通信を行う基盤のサービスです。このサービスを介しhttpリクエストを行い、GET POST PUT DELETEを実装します。
+			</p>
+			<a href="#/reflexDataServiceDemo" class="btn btn-primary">サンプル</a>
+			<br />
+			<br />
+		</div>
+	</div>
+	<div class="col-xs-4">
+		<div class="well">
+			<h3>Server Side Javascript Demo</h3>
+			<p>
+				サーバー側の処理をjavascriptで記述します。<br />
+				「grunt upload」を実行することでサーバーにデプロイします。
+			</p>
+			<a href="#/serverSideJavascript" class="btn btn-primary">サンプル</a>
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+<div class="row col-xs-12">
+	<div class="col-xs-4">
+		<div class="well">
+			<h3>PDF Create Demo</h3>
+			<p>
+				リクエストデータを元にPDFを作成し出力します。
+			</p>
+			<a href="#/PDFCreateDemo" class="btn btn-primary">サンプル</a>
+			<br />
+			<br />
+		</div>
+	</div>
+	<div class="col-xs-4">
+		<div class="well">
+			<h3>XLS Create Demo</h3>
+			<p>
+				リクエストデータを元にXLS(Excel Date)を作成し出力します。また、XLSをインポートすることで、ファイル内のデータをJSON形式でレスポンスとして返します。
+			</p>
+			<a href="#/XLSCreateDemo" class="btn btn-primary">サンプル</a>
+			<br />
+			<br />
+		</div>
+	</div>
 </div>
