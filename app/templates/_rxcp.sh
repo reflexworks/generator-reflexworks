@@ -24,9 +24,9 @@ function rxid() {
 
     if [ -d $4 ]; then
         echo "$4 is a directory."
-        curl -H "Authorization: Token "$now2-$noncestr-$PasswordDigest-$idstr -H "Content-Type:"$5 -X PUT $3$6$7
+        curl -H "Authorization: Token "$now2-$noncestr-$PasswordDigest-$idstr -H "Content-Type:"$5 -H "X-Requested-With: XMLHttpRequest" -X PUT $3$6$7
     else
-        curl -H "Authorization: Token "$now2-$noncestr-$PasswordDigest-$idstr -H "Content-Type:"$5 -T $4 $3$6$7
+        curl -H "Authorization: Token "$now2-$noncestr-$PasswordDigest-$idstr -H "Content-Type:"$5 -H "X-Requested-With: XMLHttpRequest" -T $4 $3$6$7
         fi
     echo -e '\n'
 }

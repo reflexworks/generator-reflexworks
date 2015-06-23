@@ -48,9 +48,60 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
 //    grunt.loadNpmTasks('grunt-connect-proxy');
+    grunt.loadNpmTasks('grunt-react');
 
     // Define the configuration for all the tasks
     grunt.initConfig({
+
+        // Project settings
+        yeoman: {
+            // configurable paths
+            app: require('./bower.json').appPath || 'app',
+            dist: 'dist'
+        },
+
+        // Watches files for changes and runs tasks based on the changed files
+        watch: {
+            js: {
+                files: [
+                        '<%= yeoman.app %>/scripts/{,*/}*.js',
+                        '<%= yeoman.app %>/scripts/{,*/}*/{,*/}*.js'
+                ],
+                tasks: ['newer:jshint:all'],
+                options: {
+                    livereload: true
+                }
+            },
+            jsTest: {
+                files: ['test/spec/{,*/}*.js'],
+                tasks: ['newer:jshint:test', 'karma']
+            },
+            compass: {
+                files: [
+                    '<%= yeoman.app %>/styles/**/*.{scss,sass}'
+                ],
+                tasks: ['compass:server', 'autoprefixer']
+            },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
+            livereload: {
+                options: {
+                    livereload: '<%= connect.options.livereload %>',
+                    middleware: getConnectMiddleware
+                },
+                files: [
+                    '<%= yeoman.app %>/{,*/}*.html',
+                    '<%= yeoman.app %>/{,*/}*/{,*/}*.html',
+                    '.tmp/styles/{,*/}*.css',
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
+            },
+            react: {
+                files: '<%= yeoman.app %>/server/**/*.jsx',
+                tasks: ['react']
+            }
+        },
 
         // The actual grunt server settings
         connect: {
@@ -91,34 +142,40 @@ module.exports = function (grunt) {
                     context: '/d',
                     host: '<%= serviceHostUrl %>',
                     port: 80,
+//                    port: 3000,
                     https: false,
                     xforward: false,
-                    changeOrigin: true
+                    headers: {
+                        'host': 'localhost:8080'
+                    }
                 },{
                     context: '/p',
                     host: '<%= serviceHostUrl %>',
                     port: 80,
                     https: false,
                     xforward: false,
-                    changeOrigin: true
+                    headers: {
+                        'host': 'localhost:8080'
+                    }
                 },{
                     context: '/x',
                     host: '<%= serviceHostUrl %>',
                     port: 80,
                     https: false,
                     xforward: false,
-                    changeOrigin: true
+                    headers: {
+                        'host': 'localhost:8080'
+                    }
                 }
                 ]
-            },
-            virtualproduction: {
-                proxies: [{
+                },
+                virtualproduction: {
+                    proxies: [{
                     context: '/apps',
                     host: 'localhost',
                     port: 9000,
                     https: false,
                     xforward: false,
-                    changeOrigin: false,
                     rewrite: {
                         '^/apps': ''
                     }
@@ -127,55 +184,17 @@ module.exports = function (grunt) {
                     host: 'localhost',
                     port: 3000,
                     https: false,
-                    xforward: false,
-                    changeOrigin: false
+                    xforward: false
                 },{
                     context: '/d',
                     host: '<%= serviceHostUrl %>',
                     port: 443,
                     https: true,
                     xforward: false,
-                    changeOrigin: true
+                    headers: {
+                        'host': 'localhost:8080'
+                    }
                 }]
-            }
-        },
-
-        // Watches files for changes and runs tasks based on the changed files
-        watch: {
-            js: {
-                files: [
-                        '<%= yeoman.app %>/scripts/{,*/}*.js',
-                        '<%= yeoman.app %>/scripts/{,*/}*/{,*/}*.js'
-                ],
-                tasks: ['newer:jshint:all'],
-                options: {
-                    livereload: true
-                }
-            },
-            jsTest: {
-                files: ['test/spec/{,*/}*.js'],
-                tasks: ['newer:jshint:test', 'karma']
-            },
-            compass: {
-                files: [
-                    '<%= yeoman.app %>/styles/**/*.{scss,sass}'
-                ],
-                tasks: ['compass:server', 'autoprefixer']
-            },
-            gruntfile: {
-                files: ['Gruntfile.js']
-            },
-            livereload: {
-                options: {
-                    livereload: '35729',
-                    middleware: getConnectMiddleware
-                },
-                files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
-                    '<%= yeoman.app %>/{,*/}*/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
             }
         },
 
@@ -372,6 +391,7 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'pdf/*',
                         'xls/*',
+                        'server/**',
                         'language/*',
                         '*.html',
                         'views/{,*/}*.html',
@@ -447,6 +467,22 @@ module.exports = function (grunt) {
             }
         },
 
+        //E2Eテストランナー protractorのタスク設定です。
+        protractor: {
+            options: {
+                configFile: 'node_modules/protractor/docs/referenceConf.js', // Default config file
+                keepAlive: false,
+                noColor: false,
+                args: {}
+            },
+            E2E_local: {
+                options: {
+                    configFile: 'protractor.conf.js',
+                    args: {}
+                }
+            }
+        },
+
         // APIのモックサーバーである"Node Easymock"を起動するためのタスク設定です。
         easymock: {
             api: {
@@ -455,6 +491,19 @@ module.exports = function (grunt) {
                     path: 'api-mock/',
                     config: 'api-mock/config.json'
                 }
+            }
+        },
+        react: {
+            dynamic_mappings: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        src: [ 'server/**/*.jsx' ],
+                        dest: '<%= yeoman.dist %>',
+                        ext: '.js'
+                    }
+                ]
             }
         }
 
@@ -490,7 +539,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('upload1', function() {
-        console.log('start upload task.');
+        console.log('start upload task1.');
         var exec = require('child_process').exec;
         var done = this.async();
         var command = './rxcp.sh dist http://<%= serviceHostUrl %>';
@@ -508,7 +557,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('upload2', function() {
-        console.log('start upload task.');
+        console.log('start upload task2.');
         var exec = require('child_process').exec;
         var done = this.async();
         var command = './rxcp.sh  setup http://<%= serviceHostUrl %>/p nocontent';
@@ -526,7 +575,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('upload3', function() {
-        console.log('start upload task.');
+        console.log('start upload task3.');
         var exec = require('child_process').exec;
         var done = this.async();
         var command = './rxcp.sh  userinit http://<%= serviceHostUrl %>/d';
@@ -565,6 +614,7 @@ module.exports = function (grunt) {
         'usemin',
         'copy:fonts',
         'htmlmin',
+        'react',
         'clean:distbower'
     ]);
 
