@@ -61,6 +61,7 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('app/scripts/controllers');
       this.dest.mkdir('app/scripts/service');
 
+      this.dest.mkdir('app/server');
       this.dest.mkdir('app/styles');
       this.dest.mkdir('app/styles/index');
       this.dest.mkdir('app/styles/index/layouts');
@@ -69,7 +70,6 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('app/views');
       this.dest.mkdir('app/images');
       this.dest.mkdir('app/pdf');
-      this.dest.mkdir('app/remote');
       this.dest.mkdir('app/xls');
 
       this.dest.mkdir('setup');
@@ -83,7 +83,6 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
       this.template('app/index.html', 'app/index.html');
       this.template('app/login.html', 'app/login.html');
       this.template('app/400.html', 'app/400.html');
-      this.template('app/404.html', 'app/404.html');
       this.template('app/error.html', 'app/error.html');
       this.src.copy('app/favicon.ico', 'app/favicon.ico');
 
@@ -115,7 +114,10 @@ var ReflexworksGenerator = yeoman.generators.Base.extend({
 
       this.src.copy('app/xls/preson_template.xls', 'app/xls/preson_template.xls');
       this.src.copy('app/pdf/template_person.html', 'app/pdf/template_person.html');
-      this.src.copy('app/remote/person.js', 'app/remote/person.js');
+      this.src.copy('app/server/person_get.js', 'app/server/person_get.js');
+      this.src.copy('app/server/person_post.js', 'app/server/person_post.js');
+      this.src.copy('app/server/person_delete.js', 'app/server/person_delete.js');
+      this.src.copy('app/server/person_put.js', 'app/server/person_put.js');
 
       this.template('example_data/parson_data.xls', 'example_data/parson_data.xls');
 
