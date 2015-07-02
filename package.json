@@ -1,14 +1,14 @@
 {
   "name": "generator-reflexworks",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "someuser/generator-reflexworks",
+  "repository": "reflexworks/generator-reflexworks",
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/someuser"
+    "name": "vtecadmin",
+    "email": "vtecadmin@gmail.com",
+    "url": "https://github.com/reflexworks"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -28,6 +28,7 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "mkdirp": "^0.5.1",
     "mocha": "*"
   },
   "peerDependencies": {

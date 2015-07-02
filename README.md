@@ -1,4 +1,4 @@
-# generator-reflexworks [![Build Status](https://secure.travis-ci.org/someuser/generator-reflexworks.png?branch=master)](https://travis-ci.org/someuser/generator-reflexworks)
+# generator-reflexworks [![Build Status](https://secure.travis-ci.org/reflexworks/generator-reflexworks.png?branch=master)](https://travis-ci.org/reflexworks/generator-reflexworks)
 
 > [Yeoman](http://yeoman.io) generator
 
