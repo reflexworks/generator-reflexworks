@@ -6,7 +6,7 @@
     "opensoft-wsse": "~0.1.0",
     "requirejs": "~2.1.14",
     "zlib-asm": "~0.2.2",
-    "jquery": "~2.1.1",
+    "jquery": "~2.1.4",
     "msgpack-javascript": "*"
   },
   "devDependencies": {
